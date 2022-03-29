@@ -40,7 +40,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Your Top Tracks</h1>
+        <h1>Your Top Tracks v0.1</h1>
+        <h3>Made By Husain Ebrahim</h3>
           {token ? 
           <SpotifyGetTopSongs/>  
 
