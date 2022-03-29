@@ -9,7 +9,7 @@ function App() {
   var scope = 'user-top-read';
 
   const CLIENT_ID = "ca2a7b906f7249369617fe8577278df7"
-  const REDIRECT_URI = "http://localhost:3000"
+  const REDIRECT_URI = "https://spotify-tracks-retrieve.netlify.app"
   const  AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
   const RESPONSE_TYPE = "token"
   const [token, setToken] = useState("")
