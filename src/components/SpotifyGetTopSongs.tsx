@@ -1,4 +1,4 @@
-import { Card, CardHeader, Avatar, IconButton, CardMedia, CardContent, Typography, CardActions, Collapse, styled, Box, Grid, Paper } from "@mui/material";
+import { Card, CardHeader, Avatar, IconButton, CardMedia, CardContent, Typography, CardActions, Collapse, styled, Box, Grid, Paper, Button } from "@mui/material";
 import { red } from "@mui/material/colors";
 import axios from "axios";
 import React, { useState } from "react";
@@ -8,8 +8,8 @@ const SpotifyGetTopSongs = () => {
     const [data, setData] = useState<any>({});
 
 
-    const TOP_ARTISTS_MEDIUMTERM_ENDPOINT = "https://api.spotify.com/v1/me/top/tracks?time_range=medium_term&limit=10&offset=5"
-    const TOP_ARTISTS_SHORTTERM_ENDPOINT = "https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=10&offset=5"
+    const TOP_ARTISTS_MEDIUMTERM_ENDPOINT = "https://api.spotify.com/v1/me/top/tracks?time_range=medium_term&limit=10&offset=0"
+    const TOP_ARTISTS_SHORTTERM_ENDPOINT = "https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=10&offset=0"
 
     React.useEffect(() => {
         if(localStorage.getItem("token")) {
@@ -53,10 +53,10 @@ const SpotifyGetTopSongs = () => {
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
         <Grid item xs={6}>
-        <button onClick={handleGetTopTracks_MedTerm}>Last 6 Months</button>
+        <Button variant="contained" onClick={handleGetTopTracks_MedTerm}>Last 6 Months</Button>
         </Grid>
         <Grid item xs={6}>
-        <button onClick={handleGetTopTracks_ShortTerm}>Last 4 Weeks</button>
+        <Button variant="contained" onClick={handleGetTopTracks_ShortTerm}>Last 4 Weeks</Button>
         </Grid>
         <Grid item xs={8}>
         </Grid>
