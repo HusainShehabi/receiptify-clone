@@ -1,4 +1,4 @@
-import { Card, CardHeader, Avatar, IconButton, CardMedia, CardContent, Typography, CardActions, Collapse } from "@mui/material";
+import { Card, CardHeader, Avatar, IconButton, CardMedia, CardContent, Typography, CardActions, Collapse, styled, Box, Grid, Paper } from "@mui/material";
 import { red } from "@mui/material/colors";
 import axios from "axios";
 import React, { useState } from "react";
@@ -8,7 +8,8 @@ const SpotifyGetTopSongs = () => {
     const [data, setData] = useState<any>({});
 
 
-    const TOP_ARTISTS_ENDPOINT = "https://api.spotify.com/v1/me/top/tracks?time_range=medium_term&limit=10&offset=5"
+    const TOP_ARTISTS_MEDIUMTERM_ENDPOINT = "https://api.spotify.com/v1/me/top/tracks?time_range=medium_term&limit=10&offset=5"
+    const TOP_ARTISTS_SHORTTERM_ENDPOINT = "https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=10&offset=5"
 
     React.useEffect(() => {
         if(localStorage.getItem("token")) {
@@ -16,8 +17,8 @@ const SpotifyGetTopSongs = () => {
         }
     }, []);
 
-    const handleGetTopTracks = async (e: any) => {
-        axios.get(TOP_ARTISTS_ENDPOINT, {
+    const handleGetTopTracks_MedTerm = async (e: any) => {
+        axios.get(TOP_ARTISTS_MEDIUMTERM_ENDPOINT, {
             headers: {
                 Authorization: "Bearer " + token
             },
@@ -27,10 +28,42 @@ const SpotifyGetTopSongs = () => {
         .catch((error) => {console.log(error)})
     }
 
+    const handleGetTopTracks_ShortTerm = async (e: any) => {
+      axios.get(TOP_ARTISTS_SHORTTERM_ENDPOINT, {
+          headers: {
+              Authorization: "Bearer " + token
+          },
+      }).then((response) => {
+          setData(response.data);
+      })
+      .catch((error) => {console.log(error)})
+  }
+
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  }));
+
 
   return(
     <>
-    <button onClick={handleGetTopTracks}>Get Top Songs</button>
+    <Box sx={{ flexGrow: 1 }}>
+      <Grid container spacing={2}>
+        <Grid item xs={6}>
+        <button onClick={handleGetTopTracks_MedTerm}>Last 6 Months</button>
+        </Grid>
+        <Grid item xs={6}>
+        <button onClick={handleGetTopTracks_ShortTerm}>Last 4 Weeks</button>
+        </Grid>
+        <Grid item xs={8}>
+        </Grid>
+      </Grid>
+    </Box>
+    
+    
     <br />
     {data.items ? data.items.map((item: any) => <div key={data.id}>
     <Card sx={{ maxWidth: 345 }}>
