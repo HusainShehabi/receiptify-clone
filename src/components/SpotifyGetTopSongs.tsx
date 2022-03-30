@@ -79,14 +79,14 @@ const SpotifyGetTopSongs = () => {
     <>
   <br />
     <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={4}>
-        <Grid item xs={4}>
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
         <Button onClick={handleGetTopTracks_MedTerm}>Last 6 Months</Button>
         </Grid>
-        <Grid item xs={5}>
+        <Grid item xs={12}>
         <Button onClick={handleGetTopTracks_ShortTerm}>Last 4 Weeks</Button>
         </Grid>
-        <Grid item xs={1}>
+        <Grid item xs={12}>
         <Button onClick={handleGetTopTracks_LongTerm}>All Time</Button>
         </Grid>
       </Grid>
@@ -96,7 +96,7 @@ const SpotifyGetTopSongs = () => {
       {data.items
         ? data.items.map((item: any) => (
             <div key={data.id}>
-              <Card width={350}>
+              <Card width={350} height={450}>
                 <CardMedia height={350} dark src={item.album.images[0].url} />
                 <CardContent>
                   <Subtitle2 secondary style={{ marginBottom: "4px" }}>
