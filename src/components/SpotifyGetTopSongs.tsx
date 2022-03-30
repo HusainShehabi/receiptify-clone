@@ -13,10 +13,16 @@ import {
   Subtitle2,
 } from "ui-neumorphism";
 import "ui-neumorphism/dist/index.css";
+import { animated, config, useTransition } from "react-spring";
 
 const SpotifyGetTopSongs = () => {
   const [token, setToken] = useState<string | null>("");
   const [data, setData] = useState<any>({});
+  const transitions = useTransition(data, {
+    from: { x: -100, y: 800, opacity: 0 },
+    enter: { x: 0, y: 0, opacity: 1 },
+    
+  })
 
   const TOP_ARTISTS_LONGTERM_ENDPOINT =
     "https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=10&offset=0";
@@ -93,7 +99,11 @@ const SpotifyGetTopSongs = () => {
       </Grid>
     </Box>
     <br />
-  
+
+    
+    {transitions(
+    (styles, item) => item && 
+    <animated.div style={styles}>
       {data.items
         ? data.items.map((item: any) => (
             <div key={data.id}>
@@ -108,11 +118,12 @@ const SpotifyGetTopSongs = () => {
                 <CardAction>
                 </CardAction>
               </Card>
-
               <br />
             </div>
           ))
         : null}
+        </animated.div>
+  )}
     </>
   );
 };
