@@ -97,12 +97,13 @@ const SpotifyGetTopSongs = () => {
         ? data.items.map((item: any) => (
             <div key={data.id}>
               <Card width={350} height={450}>
-                <CardMedia height={350} dark src={item.album.images[0].url} />
+                <CardMedia height={350} dark src={item.album.images[0].url}/>
                 <CardContent>
                   <Subtitle2 secondary style={{ marginBottom: "4px" }}>
                     {item.name}
                   </Subtitle2>
                   <Body2>{item.artists[0].name}</Body2>
+                  <Body2>{item.album["album_type"]}</Body2>
                 </CardContent>
                 <CardAction>
                 </CardAction>

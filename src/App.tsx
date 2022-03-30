@@ -1,7 +1,7 @@
 
 import { url } from "inspector";
 import { useEffect, useState } from "react";
-import { Button } from "ui-neumorphism";
+import { Button, Typography } from "ui-neumorphism";
 import "./App.css";
 import SpotifyGetTopSongs from "./components/SpotifyGetTopSongs";
 
@@ -40,6 +40,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <br />
         <h1>Generate Your Top Tracks</h1>
 
           {token ?
@@ -50,7 +51,9 @@ function App() {
         {!token ?
         <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&scope=${scope}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login
          to Spotify</a>
-        : <Button onClick={logout}>Logout</Button>}
+        : <Button color='var(--error)' onClick={logout}>Logout</Button>}
+        <br/>
+        <Typography className="caption">Made By Husain Ebrahim</Typography>
         <br/>
       </header>
     </div>
