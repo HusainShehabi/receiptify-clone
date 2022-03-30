@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { Box, Grid } from "@mui/material";
+import { padding } from "@mui/system";
 import axios from "axios";
 import React, { useState } from "react";
 import {
@@ -97,13 +98,12 @@ const SpotifyGetTopSongs = () => {
         ? data.items.map((item: any) => (
             <div key={data.id}>
               <Card width={350} height={450}>
-                <CardMedia height={350} dark src={item.album.images[0].url}/>
-                <CardContent>
-                  <Subtitle2 secondary style={{ marginBottom: "4px" }}>
+                <CardContent style={{paddingTop: "15px"}}>
+                <CardMedia height={350} src={item.album.images[0].url} style={{marginBottom: "20px"}} />
+                  <Subtitle2 secondary style={{ marginBottom: "4px"}}>
                     {item.name}
                   </Subtitle2>
                   <Body2>{item.artists[0].name}</Body2>
-                  <Body2>{item.album["album_type"]}</Body2>
                 </CardContent>
                 <CardAction>
                 </CardAction>
