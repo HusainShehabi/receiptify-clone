@@ -110,11 +110,11 @@ const SpotifyGetTopSongs = () => {
             <div key={data.id}>
               <Card width={350} height={450}>
                 <CardContent style={{paddingTop: "15px"}}>
-                <CardMedia height={350} src={item.album.images[0].url} style={{marginBottom: "5px"}} />
-                  <Subtitle2 secondary style={{ fontFamily:  'Patrick Hand SC', fontSize: 30}}>
+                <CardMedia height={350} src={item.album.images[0].url} style={{marginBottom: "10px"}} />
+                  <Subtitle2 secondary style={{ fontFamily:  'Permanent Marker', fontSize: 20, color: 'navy', opacity: 0.6}}>
                     {item.name}
                   </Subtitle2>
-                  <Body2 style={{fontFamily:  'Patrick Hand SC', fontSize: 20}}>{item.artists[0].name}</Body2>
+                  <Body2 style={{fontFamily:  'Permanent Marker', fontSize: 15, color: 'navy', opacity: 0.6}}>{item.artists[0].name}</Body2>
                 </CardContent>
                 <CardAction>
                 </CardAction>

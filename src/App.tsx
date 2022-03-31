@@ -41,16 +41,17 @@ function App() {
     <div className="App">
       <header className="App-header">
         <br />
-        <h1>Generate Your Top Tracks</h1>
+        <h1 style={{ fontFamily:  'Permanent Marker'}}>Generate Your Top Spotify Tracks</h1>
 
           {token ?
+          
           <SpotifyGetTopSongs/>
 
-          : <h2>Please Login</h2>
+          : <br/>
         }
         {!token ?
-        <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&scope=${scope}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login
-         to Spotify</a>
+        <Button><a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&scope=${scope}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login
+        to Spotify</a></Button>
         : <Button color='var(--error)' onClick={logout}>Logout</Button>}
         <br/>
         <Typography className="caption">Made By Husain Ebrahim</Typography>
