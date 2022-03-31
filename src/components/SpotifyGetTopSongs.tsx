@@ -14,6 +14,7 @@ import {
 } from "ui-neumorphism";
 import "ui-neumorphism/dist/index.css";
 import { animated, config, useTransition } from "react-spring";
+import '../index.css';
 
 const SpotifyGetTopSongs = () => {
   const [token, setToken] = useState<string | null>("");
@@ -109,11 +110,11 @@ const SpotifyGetTopSongs = () => {
             <div key={data.id}>
               <Card width={350} height={450}>
                 <CardContent style={{paddingTop: "15px"}}>
-                <CardMedia height={350} src={item.album.images[0].url} style={{marginBottom: "20px"}} />
-                  <Subtitle2 secondary style={{ marginBottom: "4px"}}>
+                <CardMedia height={350} src={item.album.images[0].url} style={{marginBottom: "5px"}} />
+                  <Subtitle2 secondary style={{ fontFamily:  'Patrick Hand SC', fontSize: 30}}>
                     {item.name}
                   </Subtitle2>
-                  <Body2>{item.artists[0].name}</Body2>
+                  <Body2 style={{fontFamily:  'Patrick Hand SC', fontSize: 20}}>{item.artists[0].name}</Body2>
                 </CardContent>
                 <CardAction>
                 </CardAction>
