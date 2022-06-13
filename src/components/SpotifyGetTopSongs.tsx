@@ -20,7 +20,7 @@ const SpotifyGetTopSongs = () => {
   const [token, setToken] = useState<string | null>("");
   const [data, setData] = useState<any>({});
   const transitions = useTransition(data, {
-    from: { x: -100, y: 800, opacity: 0 },
+    from: { x: 0, y: 800, opacity: 0 },
     enter: { x: 0, y: 0, opacity: 1 },
   });
 
