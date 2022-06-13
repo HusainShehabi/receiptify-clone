@@ -14,7 +14,7 @@ import {
 } from "ui-neumorphism";
 import "ui-neumorphism/dist/index.css";
 import { animated, config, useTransition } from "react-spring";
-import '../index.css';
+import "../index.css";
 
 const SpotifyGetTopSongs = () => {
   const [token, setToken] = useState<string | null>("");
@@ -22,8 +22,7 @@ const SpotifyGetTopSongs = () => {
   const transitions = useTransition(data, {
     from: { x: -100, y: 800, opacity: 0 },
     enter: { x: 0, y: 0, opacity: 1 },
-    
-  })
+  });
 
   const TOP_ARTISTS_LONGTERM_ENDPOINT =
     "https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=10&offset=0";
@@ -85,46 +84,65 @@ const SpotifyGetTopSongs = () => {
 
   return (
     <>
-  <br />
-    <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-        <Button onClick={handleGetTopTracks_MedTerm}>Last 6 Months</Button>
-        </Grid>
-        <Grid item xs={12}>
-        <Button onClick={handleGetTopTracks_ShortTerm}>Last 4 Weeks</Button>
-        </Grid>
-        <Grid item xs={12}>
-        <Button onClick={handleGetTopTracks_LongTerm}>All Time</Button>
-        </Grid>
-      </Grid>
-    </Box>
-    <br />
+      <br />
+      <div className="button-wrapper">
+        <div style={{ padding: "5px" }}>
+          <Button onClick={handleGetTopTracks_MedTerm}>Last 6 Months</Button>
+        </div>
+        <div style={{ padding: "5px" }}>
+          <Button onClick={handleGetTopTracks_ShortTerm}>Last 4 Weeks</Button>
+        </div>
+        <div style={{ padding: "5px" }}>
+          <Button onClick={handleGetTopTracks_LongTerm}>All Time</Button>
+        </div>
+      </div>
+      <br />
 
-    
-    {transitions(
-    (styles, item) => item && 
-    <animated.div style={styles}>
-      {data.items
-        ? data.items.map((item: any) => (
-            <div key={data.id}>
-              <Card width={350} height={450}>
-                <CardContent style={{paddingTop: "15px"}}>
-                <CardMedia height={350} src={item.album.images[0].url} style={{marginBottom: "10px"}} />
-                  <Subtitle2 secondary style={{ fontFamily:  'Permanent Marker', fontSize: 20, color: 'navy', opacity: 0.6}}>
-                    {item.name}
-                  </Subtitle2>
-                  <Body2 style={{fontFamily:  'Permanent Marker', fontSize: 15, color: 'navy', opacity: 0.6}}>{item.artists[0].name}</Body2>
-                </CardContent>
-                <CardAction>
-                </CardAction>
-              </Card>
-              <br />
-            </div>
-          ))
-        : null}
-        </animated.div>
-  )}
+      {transitions(
+        (styles, item) =>
+          item && (
+            <animated.div style={styles}>
+              {data.items
+                ? data.items.map((item: any) => (
+                    <div key={data.id}>
+                      <Card width={350} height={450}>
+                        <CardContent style={{ paddingTop: "15px" }}>
+                          <CardMedia
+                            height={350}
+                            src={item.album.images[0].url}
+                            style={{ marginBottom: "10px" }}
+                          />
+                          <Subtitle2
+                            secondary
+                            style={{
+                              fontFamily: "Permanent Marker",
+                              fontSize: 20,
+                              color: "navy",
+                              opacity: 0.6,
+                            }}
+                          >
+                            {item.name}
+                          </Subtitle2>
+                          <Body2
+                            style={{
+                              fontFamily: "Permanent Marker",
+                              fontSize: 15,
+                              color: "navy",
+                              opacity: 0.6,
+                            }}
+                          >
+                            {item.artists[0].name}
+                          </Body2>
+                        </CardContent>
+                        <CardAction></CardAction>
+                      </Card>
+                      <br />
+                    </div>
+                  ))
+                : null}
+            </animated.div>
+          )
+      )}
     </>
   );
 };
