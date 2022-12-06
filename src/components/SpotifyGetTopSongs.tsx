@@ -15,6 +15,7 @@ import {
 import "ui-neumorphism/dist/index.css";
 import { animated, config, useTransition } from "react-spring";
 import "../index.css";
+import Draggable from "react-draggable";
 
 const SpotifyGetTopSongs = () => {
   const [token, setToken] = useState<string | null>("");
@@ -98,51 +99,57 @@ const SpotifyGetTopSongs = () => {
       </div>
       <br />
 
-      {transitions(
-        (styles, item) =>
-          item && (
-            <animated.div style={styles}>
-              {data.items
-                ? data.items.map((item: any) => (
-                    <div key={data.id}>
-                      <Card width={350} height={450}>
-                        <CardContent style={{ paddingTop: "15px" }}>
-                          <CardMedia
-                            height={350}
-                            src={item.album.images[0].url}
-                            style={{ marginBottom: "10px" }}
-                          />
-                          <Subtitle2
-                            secondary
-                            style={{
-                              fontFamily: "Permanent Marker",
-                              fontSize: 20,
-                              color: "navy",
-                              opacity: 0.6,
-                            }}
-                          >
-                            {item.name}
-                          </Subtitle2>
-                          <Body2
-                            style={{
-                              fontFamily: "Permanent Marker",
-                              fontSize: 15,
-                              color: "navy",
-                              opacity: 0.6,
-                            }}
-                          >
-                            {item.artists[0].name}
-                          </Body2>
-                        </CardContent>
-                        <CardAction></CardAction>
-                      </Card>
-                      <br />
-                    </div>
-                  ))
-                : null}
-            </animated.div>
-          )
-      )}
+      <div className="container">
+        <div className="box">
+          {transitions(
+            (styles, item) =>
+              item && (
+                <animated.div style={styles}>
+                  {data.items
+                    ? data.items.map((item: any) => (
+                        <Draggable>
+                          <div className="box overlay" key={data.id}>
+                            <Card width={350} height={450}>
+                              <CardContent style={{ paddingTop: "15px" }}>
+                                <CardMedia
+                                  height={350}
+                                  src={item.album.images[0].url}
+                                  style={{ marginBottom: "10px" }}
+                                />
+                                <Subtitle2
+                                  secondary
+                                  style={{
+                                    fontFamily: "Permanent Marker",
+                                    fontSize: 20,
+                                    color: "navy",
+                                    opacity: 0.6,
+                                  }}
+                                >
+                                  {item.name}
+                                </Subtitle2>
+                                <Body2
+                                  style={{
+                                    fontFamily: "Permanent Marker",
+                                    fontSize: 15,
+                                    color: "navy",
+                                    opacity: 0.6,
+                                  }}
+                                >
+                                  {item.artists[0].name}
+                                </Body2>
+                              </CardContent>
+                              <CardAction></CardAction>
+                            </Card>
+                            <br />
+                          </div>
+                        </Draggable>
+                      ))
+                    : null}
+                </animated.div>
+              )
+          )}
+        </div>
+      </div>
     </>
   );
 };

@@ -37,6 +37,7 @@
   margin: auto;
   background: white;
   font-size: 128px;
+}
 
   .mask,
   canvas {
@@ -52,10 +53,25 @@
     text-indent: -9999px;
     box-sizing: content-box;
   }
-}
+
 
 .button-wrapper {
   align-content: space-evenly;
   display: flex;
   min-width: 100px;
+}
+
+.container {
+  position: relative;
+  height: 60vh;
+  width: 50vh;
+}
+
+.box {
+  margin-bottom: 500px;
+  position: absolute;
+}
+
+.overlay {
+  z-index: 9;
 }
